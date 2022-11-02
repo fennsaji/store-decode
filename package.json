@@ -1,0 +1,18 @@
+{
+  "name": "state-migration",
+  "version": "1.0.0",
+  "description": "State migration of metamui",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "migration"
+  ],
+  "author": "Fenn Saji",
+  "license": "ISC",
+  "dependencies": {
+    "mui-metablockchain-sdk": "^2.1.4"
+  }
+}
