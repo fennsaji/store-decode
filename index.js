@@ -1,6 +1,7 @@
 const {connection} = require("mui-metablockchain-sdk");
 const balance = require("./src/balance");
 const did = require("./src/did");
+const vc = require("./src/vc");
 const fs = require('fs');
 
 function main() {
@@ -15,7 +16,11 @@ function main() {
     console.log("Did Store");
     console.log(didStore);
 
-    fs.writeFileSync('data/state.json', JSON.stringify({balanceStore, didStore}));
+    let vcStore = vc.getVCs(forkJson);
+    console.log("VC Store");
+    console.log(vcStore);
+
+    fs.writeFileSync('data/state.json', JSON.stringify({balanceStore, didStore, vcStore}));
 }
 
 main();

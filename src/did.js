@@ -27,6 +27,7 @@ function getDids(forkJson) {
             rlookups.push({key, value: utils.decodeHex(hex, "Did")});
         }
         if(key.startsWith(prevkeys_key)) {
+            // THIS IS NOT NEEDED AS PREVIOUS KEYS IS BASED ON BLOCK NUMBER
             prevkeys.push({key, value: utils.decodeHex(hex, "Option<Vec<(AccountId, BlockNumber)>>")});
         }
     }
