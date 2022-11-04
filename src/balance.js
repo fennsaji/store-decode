@@ -18,7 +18,7 @@ function getBalances(forkJson) {
             locks.push({key, value: utils.decodeHex(hex, "Vec<BalanceLock>")});
         }
         if(key.startsWith(total_issuance_key)) {
-            totalIssuance = {key, value: hexToBn(hex, { isLe: true }).toString()};
+            totalIssuance = {key, value: hexToBn(hex, { isLe: true }).toNumber()};
         }
     }
 
