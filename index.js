@@ -2,6 +2,7 @@ const {connection} = require("mui-metablockchain-sdk");
 const balance = require("./src/balance");
 const did = require("./src/did");
 const vc = require("./src/vc");
+const token = require("./src/token");
 const fs = require('fs');
 
 function main() {
@@ -9,18 +10,18 @@ function main() {
     let forkJson = JSON.parse(fork).genesis.raw.top;
     
     let balanceStore = balance.getBalances(forkJson);
-    console.log("Balances Store");
-    console.log(balanceStore);
+    console.log("Balances Store Decoded");
 
     let didStore = did.getDids(forkJson);
-    console.log("Did Store");
-    console.log(didStore);
+    console.log("Did Store Decoded");
 
     let vcStore = vc.getVCs(forkJson);
-    console.log("VC Store");
-    console.log(vcStore);
+    console.log("VC Store Decoded");
 
-    fs.writeFileSync('data/state.json', JSON.stringify({balanceStore, didStore, vcStore}));
+    let tokenStore = token.getTokens(forkJson);
+    console.log("Token Store Decoded");
+
+    fs.writeFileSync('data/state.json', JSON.stringify({balanceStore, didStore, vcStore, tokenStore}));
 }
 
 main();
