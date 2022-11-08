@@ -1,4 +1,4 @@
-const {utils} = require("mui-metablockchain-sdk");
+const {utils, vc} = require("mui-metablockchain-sdk");
 
 function getVCs(forkJson) {
     let vcs_key = '0xadf7562815365fcd9a52b5bb27961ddd225a174d55e19c40ae90fdfb2e26e068';
@@ -15,7 +15,21 @@ function getVCs(forkJson) {
 
     for (const [key, hex] of Object.entries(forkJson)) {
         if(key.startsWith(vcs_key)) {
-            vcs.push({key, value: utils.decodeHex(hex, "Option<(VC, VCStatus)>")});
+            let value = utils.decodeHex(hex, "Option<(VC, VCStatus)>");
+            switch (value[0].vc_type) {
+                case 'TokenVC':
+                case 'GenericVC':
+                case 'TokenTransferVC':
+                    value[0].vc_property = utils.decodeHex(value[0].vc_property, value[0].vc_type);
+                    break;
+                case 'SlashTokens':
+                case 'MintTokens':
+                    value[0].vc_property = utils.decodeHex(value[0].vc_property, 'SlashMintTokens');
+                    break;
+                default:
+                    continue;
+            }
+            vcs.push({key, value});
         }
         if(key.startsWith(lookup_key)) {
             lookups.push({key, value: utils.decodeHex(hex, "Vec<VCid>")});
