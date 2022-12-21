@@ -13,6 +13,7 @@
   "author": "Fenn Saji",
   "license": "ISC",
   "dependencies": {
-    "mui-metablockchain-sdk": "^2.1.4"
+    "mui-metablockchain-sdk": "^2.1.4",
+    "yargs": "^17.6.2"
   }
 }
