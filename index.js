@@ -31,6 +31,8 @@ function main() {
 
 
     fs.writeFileSync('data/state.json', JSON.stringify({balanceStore, didStore, vcStore, tokenStore, councilStore, validatorSetStore}));
+    
+    process.exit(0);
 }
 
 main();
